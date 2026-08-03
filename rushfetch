@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+set -e
+
+CONFIG="$HOME/.config/fastfetch/config.jsonc"
+
+case "$1" in
+
+list)
+
+echo "Installed Themes"
+
+find themes \
+    -mindepth 1 \
+    -maxdepth 1 \
+    -type d \
+    -printf " • %f\n"
+
+;;
+
+use)
+
+cp \
+themes/$2/config.jsonc \
+"$CONFIG"
+
+echo "Theme changed to $2"
+
+;;
+
+preview)
+
+fastfetch \
+--config themes/$2/config.jsonc
+
+;;
+
+*)
+
+echo
+
+echo "RushFetch"
+
+echo
+
+echo "Commands"
+
+echo " list"
+
+echo " use THEME"
+
+echo " preview THEME"
+
+;;
+
+esac
